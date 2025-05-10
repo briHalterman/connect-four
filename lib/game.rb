@@ -30,7 +30,7 @@ class Game
 
   def play
     until @winner || board_full?
-      puts "#{current_player[:name]} #{current_player[:symbol]}, Go for it!"
+      puts "#{current_player[:name]} #{current_player[:symbol]}, Go 4 it!"
       column = gets.chomp.to_i
       take_turn(column)
     end
