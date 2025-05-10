@@ -10,4 +10,14 @@ RSpec.describe Game do
       expect(players.first[:symbol]).to eq("🔴")
     end
   end
+
+  describe "#take_turn" do
+    it "drops a piece for the current player in the given column" do
+      game = Game.new
+      game.take_turn(3)
+
+      board = game.instance_variable_get(:@board)
+      expect(board.grid[5][3]).to eq("🔴")
+    end
+  end
 end

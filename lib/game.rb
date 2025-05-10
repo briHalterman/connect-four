@@ -9,4 +9,9 @@ class Game
     ]
     @current_player_index = 0
   end
+
+  def take_turn(column)
+    current_player = @players[@current_player_index]
+    @board.drop_piece(column, current_player[:symbol])
+  end
 end
