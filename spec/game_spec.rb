@@ -7,7 +7,7 @@ RSpec.describe Game do
       expect(game.instance_variable_get(:@board)).to be_a(Board)
       players = game.instance_variable_get(:@players)
       expect(players.length).to eq(2)
-      expect(players.first[:symbol]).to eq("🔴")
+      expect(players.first[:symbol]).to eq("●")
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe Game do
       game.take_turn(3)
 
       board = game.instance_variable_get(:@board)
-      expect(board.grid[5][3]).to eq("🔴")
+      expect(board.grid[5][3]).to eq("●")
     end
 
     it "switches to the next player after a turn" do
@@ -33,23 +33,23 @@ RSpec.describe Game do
       game = Game.new
       board = game.instance_variable_get(:@board)
 
-      board.grid[5][0] = "🔴"
-      board.grid[5][1] = "🔴"
-      board.grid[5][2] = "🔴"
+      board.grid[5][0] = "●"
+      board.grid[5][1] = "●"
+      board.grid[5][2] = "●"
 
       game.take_turn(3)
 
-      expect(game.instance_variable_get(:@winner)).to eq("🔴")
+      expect(game.instance_variable_get(:@winner)).to eq("●")
     end
   end
 
   describe "#current_player" do
     it "return the correct player based on the current index" do
       game = Game.new
-      expect(game.current_player[:symbol]).to eq("🔴")
+      expect(game.current_player[:symbol]).to eq("●")
 
       game.instance_variable_set(:@current_player_index, 1)
-      expect(game.current_player[:symbol]).to eq("🟡")
+      expect(game.current_player[:symbol]).to eq("○")
     end
   end
 
@@ -58,9 +58,9 @@ RSpec.describe Game do
       game = Game.new
       board = game.instance_variable_get(:@board)
 
-      board.grid[5][0] = "🔴"
-      board.grid[5][1] = "🔴"
-      board.grid[5][2] = "🔴"
+      board.grid[5][0] = "●"
+      board.grid[5][1] = "●"
+      board.grid[5][2] = "●"
 
       allow(game).to receive(:gets).and_return("3")
 
@@ -73,11 +73,24 @@ RSpec.describe Game do
 
       6.times do |row|
         7.times do |column|
-          board.grid[row][column] = (row + column).even? ? "🔴" : "🟡"
+          board.grid[row][column] = (row + column).even? ? "●" : "○"
         end
       end
 
       expect { game.play }.to output(/This time\? Nobody ruled the row!/).to_stdout
+    end
+
+    it "prints the board before the first move" do
+      game = Game.new
+      board = game.instance_variable_get(:@board)
+
+      board.grid[5][0] = "●"
+      board.grid[5][1] = "●"
+      board.grid[5][2] = "●"
+
+      allow(game).to receive(:gets).and_return("3")
+
+      expect { game.play }.to output(/0 1 2 3 4 5 6/).to_stdout
     end
   end
 end
