@@ -19,5 +19,14 @@ RSpec.describe Game do
       board = game.instance_variable_get(:@board)
       expect(board.grid[5][3]).to eq("🔴")
     end
+
+    it "switches to the next player after a turn" do
+      game = Game.new
+
+      game.take_turn(3)
+      current_index = game.instance_variable_get(:@current_player_index)
+
+      expect(current_index).to eq(1)
+    end
   end
 end
