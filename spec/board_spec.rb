@@ -93,6 +93,20 @@ RSpec.describe Board do
       board.grid[3][2] = "🔴"
       board.grid[2][3] = "🔴"
 
+      # board.print_board
+
+      expect(board.winning_move?("🔴")).to be true
+    end
+
+    it "detects a diagonal win from top-left to bottom-right" do
+      board = Board.new
+      board.grid[2][0] = "🔴"
+      board.grid[3][1] = "🔴"
+      board.grid[4][2] = "🔴"
+      board.grid[5][3] = "🔴"
+
+      # board.print_board
+
       expect(board.winning_move?("🔴")).to be true
     end
   end
