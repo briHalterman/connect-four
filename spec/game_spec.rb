@@ -66,5 +66,18 @@ RSpec.describe Game do
 
       expect { game.play }.to output(/Player 1 wins! That's four in a row!/).to_stdout
     end
+
+    it "prints a draw message when the board is full and no one wins" do
+      game = Game.new
+      board = game.instance_variable_get(:@board)
+
+      6.times do |row|
+        7.times do |column|
+          board.grid[row][column] = (row + column).even? ? "🔴" : "🟡"
+        end
+      end
+
+      expect { game.play }.to output(/This time\? Nobody ruled the row!/).to_stdout
+    end
   end
 end
