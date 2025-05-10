@@ -67,4 +67,16 @@ RSpec.describe Board do
       expect(board.grid[0][3]).to eq("🟡")
     end
   end
+
+  describe "#winning_move?" do
+    it "detects a horizontal win for 4 in a row" do
+      board = Board.new
+      board.drop_piece(0, "🔴")
+      board.drop_piece(1, "🔴")
+      board.drop_piece(2, "🔴")
+      board.drop_piece(3, "🔴")
+
+      expect(board.winning_move?("🔴")).to be true
+    end
+  end
 end
