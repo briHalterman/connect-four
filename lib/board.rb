@@ -11,4 +11,13 @@ class Board
     end
     puts " 0 1 2 3 4 5 6"
   end
+
+  def drop_piece(column, symbol)
+    (5).downto(0) do |row|
+      if @grid[row][column].nil?
+        @grid[row][column] = symbol
+        break
+      end
+    end
+  end
 end
