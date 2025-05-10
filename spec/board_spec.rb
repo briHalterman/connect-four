@@ -27,9 +27,7 @@ RSpec.describe Board do
       board.drop_piece(3, "🔴")
       expect(board.grid[5][3]).to eq("🔴")
     end
-  end
 
-  describe "#drop_piece" do
     it "stacks another symbol on top of the last" do
       board = Board.new
       board.drop_piece(3, "🔴")
@@ -37,9 +35,7 @@ RSpec.describe Board do
       expect(board.grid[5][3]).to eq("🔴")
       expect(board.grid[4][3]).to eq("🟡")
     end
-  end
-
-  describe "#drop_piece" do
+  
     it "rejects a drop if the column is full" do
       board = Board.new
       board.drop_piece(3, "🔴")
