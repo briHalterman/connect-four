@@ -23,11 +23,21 @@ class Board
   end
 
   def winning_move?(symbol)
+    # Horizontal check
     @grid.each do |row|
       row.each_cons(4) do |segment|
         return true if segment.all? { |cell| cell == symbol }
       end
     end
+
+    # Vertical check
+    (0..6).each do |column|
+      column_cells = grid.map { |row| row[column] }
+      column_cells.each_cons(4) do |segment|
+        return true if segment.all? { |cell| cell == symbol }
+      end
+    end
+    
     false
   end
 end

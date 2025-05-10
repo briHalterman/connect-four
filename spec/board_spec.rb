@@ -78,5 +78,15 @@ RSpec.describe Board do
 
       expect(board.winning_move?("🔴")).to be true
     end
+
+    it "detects a vertical win for 4 in a column" do
+      board = Board.new
+      board.drop_piece(0, "🔴")
+      board.drop_piece(0, "🔴")
+      board.drop_piece(0, "🔴")
+      board.drop_piece(0, "🔴")
+
+      expect(board.winning_move?( "🔴")).to be true
+    end
   end
 end
