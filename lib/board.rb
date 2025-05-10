@@ -42,6 +42,20 @@ class Board
       end
     end
 
+    # Diagonal check
+    (3..5).each do |row|
+      (0..3).each do |column|
+        segment = [
+          @grid[row][column],
+          @grid[row - 1][column + 1],
+          @grid[row - 2][column + 2],
+          @grid[row - 3][column + 3]
+        ]
+
+        return true if four_in_a_row?(segment, symbol)
+      end
+    end
+    
     false
   end
 end
