@@ -119,5 +119,15 @@ RSpec.describe Board do
 
       expect(board.winning_move?("🔴")).to be false
     end
+
+    it "returns false when no winning sequence is present" do
+      board = Board.new
+      board.grid[5][0] = "🔴"
+      board.grid[5][1] = "🟡"
+      board.grid[5][2] = "🔴"
+      board.grid[5][3] = "🟡"
+
+      expect(board.winning_move?("🔴")).to be false
+    end
   end
 end
