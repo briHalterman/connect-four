@@ -19,6 +19,24 @@ RSpec.describe Board do
 
       expect { board.print_board }.to output(expected_output).to_stdout
     end
+
+    it "displays dropped pieces in the correct positions" do
+      board = Board.new
+      board.drop_piece(3, "🔴")
+      board.drop_piece(3, "🟡")
+      board.drop_piece(3, "🔴")
+
+      expected_output =
+        "| | | | | | | |\n" +  # row 0
+        "| | | | | | | |\n" +  # row 1
+        "| | | | | | | |\n" +  # row 2
+        "| | | |🔴| | | |\n" +  # row 3
+        "| | | |🟡| | | |\n" +  # row 4
+        "| | | |🔴| | | |\n" +  # row 5
+        " 0 1 2 3 4 5 6\n"
+
+      expect { board.print_board }.to output(expected_output).to_stdout
+    end
   end
 
   describe "#drop_piece" do
@@ -35,7 +53,7 @@ RSpec.describe Board do
       expect(board.grid[5][3]).to eq("🔴")
       expect(board.grid[4][3]).to eq("🟡")
     end
-  
+
     it "rejects a drop if the column is full" do
       board = Board.new
       board.drop_piece(3, "🔴")
