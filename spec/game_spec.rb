@@ -42,4 +42,14 @@ RSpec.describe Game do
       expect(game.instance_variable_get(:@winner)).to eq("🔴")
     end
   end
+
+  describe "#current_player" do
+    it "return the correct player based on the current index" do
+      game = Game.new
+      expect(game.current_player[:symbol]).to eq("🔴")
+
+      game.instance_variable_set(:@current_player_index, 1)
+      expect(game.current_player[:symbol]).to eq("🟡")
+    end
+  end
 end
