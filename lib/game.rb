@@ -13,6 +13,11 @@ class Game
   def take_turn(column)
     current_player = @players[@current_player_index]
     @board.drop_piece(column, current_player[:symbol])
-    @current_player_index = (@current_player_index + 1) % 2
+
+    if @board.winning_move?(current_player[:symbol])
+      @winner = current_player[:symbol]
+    else
+      @current_player_index = (@current_player_index + 1) % 2
+    end
   end
 end

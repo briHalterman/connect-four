@@ -28,5 +28,18 @@ RSpec.describe Game do
 
       expect(current_index).to eq(1)
     end
+
+    it "detects a win immediately after a turn" do
+      game = Game.new
+      board = game.instance_variable_get(:@board)
+
+      board.grid[5][0] = "🔴"
+      board.grid[5][1] = "🔴"
+      board.grid[5][2] = "🔴"
+
+      game.take_turn(3)
+
+      expect(game.instance_variable_get(:@winner)).to eq("🔴")
+    end
   end
 end
