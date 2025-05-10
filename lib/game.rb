@@ -23,4 +23,22 @@ class Game
       @current_player_index = (@current_player_index + 1) % 2
     end
   end
+
+  def board_full?
+    @board.grid.flatten.none?(&:nil?)
+  end
+
+  def play
+    until @winner || board_full?
+      puts "#{current_player[:name]} #{current_player[:symbol]}, Go for it!"
+      column = gets.chomp.to_i
+      take_turn(column)
+    end
+
+    if @winner
+      puts "#{current_player[:name]} wins! That's four in a row!"
+    else
+      puts "This time? Nobody ruled the row!"
+    end
+  end
 end

@@ -52,4 +52,19 @@ RSpec.describe Game do
       expect(game.current_player[:symbol]).to eq("🟡")
     end
   end
+
+  describe "#play" do
+    it "prints a winning message when the game is won" do
+      game = Game.new
+      board = game.instance_variable_get(:@board)
+
+      board.grid[5][0] = "🔴"
+      board.grid[5][1] = "🔴"
+      board.grid[5][2] = "🔴"
+
+      allow(game).to receive(:gets).and_return("3")
+
+      expect { game.play }.to output(/Player 1 wins! That's four in a row!/).to_stdout
+    end
+  end
 end
