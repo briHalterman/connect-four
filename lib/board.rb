@@ -22,11 +22,15 @@ class Board
     false
   end
 
+  def four_in_a_row?(segment, symbol)
+    segment.all? { |cell| cell == symbol }
+  end
+
   def winning_move?(symbol)
     # Horizontal check
     @grid.each do |row|
       row.each_cons(4) do |segment|
-        return true if segment.all? { |cell| cell == symbol }
+        return true if four_in_a_row?(segment, symbol)
       end
     end
 
@@ -34,10 +38,10 @@ class Board
     (0..6).each do |column|
       column_cells = grid.map { |row| row[column] }
       column_cells.each_cons(4) do |segment|
-        return true if segment.all? { |cell| cell == symbol }
+        return true if four_in_a_row?(segment, symbol)
       end
     end
-    
+
     false
   end
 end
