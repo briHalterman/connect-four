@@ -38,4 +38,19 @@ RSpec.describe Board do
       expect(board.grid[4][3]).to eq("🟡")
     end
   end
+
+  describe "#drop_piece" do
+    it "rejects a drop if the column is full" do
+      board = Board.new
+      board.drop_piece(3, "🔴")
+      board.drop_piece(3, "🟡")
+      board.drop_piece(3, "🔴")
+      board.drop_piece(3, "🟡")
+      board.drop_piece(3, "🔴")
+      board.drop_piece(3, "🟡")
+      result = board.drop_piece(3, "🔴")
+      expect(result).to be false
+      expect(board.grid[0][3]).to eq("🟡")
+    end
+  end
 end

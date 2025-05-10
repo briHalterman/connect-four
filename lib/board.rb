@@ -16,8 +16,9 @@ class Board
     (5).downto(0) do |row|
       if @grid[row][column].nil?
         @grid[row][column] = symbol
-        break
+        return true
       end
     end
+    false
   end
 end
