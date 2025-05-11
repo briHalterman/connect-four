@@ -61,4 +61,14 @@ class Game
       end
     end
   end
+
+  def play_again?
+    loop do
+      puts "Play again? (y/n): "
+      input = gets.chomp.downcase
+      return true if input == "y"
+      return false if input input == "n"
+      puts "Please enter y or n"
+    end
+  end
 end

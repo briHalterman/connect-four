@@ -135,4 +135,13 @@ RSpec.describe Game do
       }.to output(/Please choose a number between 1 and 7/).to_stdout
     end
   end
+
+  describe "#play_again?" do
+    it "returns true if the player enters 'y'" do
+      game = Game.new
+      allow(game).to receive(:gets).and_return("y")
+
+      expect(game.send(:play_again?)).to be true
+    end
+  end
 end
