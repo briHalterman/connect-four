@@ -47,7 +47,7 @@ class Game
   def get_valid_column
     loop do
       input = gets.chomp
-      if input.match?(/^\d+$/)
+      if input.match?(/^\d+$/) && (1..7).include?(input.to_i)
         return input.to_i
       else
         puts "Please choose a number between 1 and 7"

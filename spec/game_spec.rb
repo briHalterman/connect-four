@@ -103,5 +103,14 @@ RSpec.describe Game do
 
       expect { game.send(:get_valid_column) }.to output(/Please choose a number between 1 and 7/).to_stdout
     end
+
+    it "rejects numbers outside the range 1 to 7" do
+      game = Game.new
+      allow(game).to receive(:gets).and_return("9", "3")
+
+      expect {
+        game.send(:get_valid_column)
+    }.to output(/Please choose a number between 1 and 7/).to_stdout
+    end
   end
 end
