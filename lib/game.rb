@@ -47,8 +47,15 @@ class Game
   def get_valid_column
     loop do
       input = gets.chomp
+
       if input.match?(/^\d+$/) && (1..7).include?(input.to_i)
-        return input.to_i
+        column = input.to_i
+
+        if @board.grid[0][column] != nil
+          puts "Column #{column} is full"
+        else
+          return column
+        end
       else
         puts "Please choose a number between 1 and 7"
       end

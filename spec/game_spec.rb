@@ -110,7 +110,20 @@ RSpec.describe Game do
 
       expect {
         game.send(:get_valid_column)
-    }.to output(/Please choose a number between 1 and 7/).to_stdout
+      }.to output(/Please choose a number between 1 and 7/).to_stdout
+    end
+
+    it "rejects input for a full column and asks again" do
+      game = Game.new
+      board = game.instance_variable_get(:@board)
+
+      6.times { board.drop_piece(3, "●")}
+
+      allow(game).to receive(:gets).and_return("3", "2")
+
+      expect {
+        game.send(:get_valid_column)
+    }.to output(/Column 3 is full/).to_stdout
     end
   end
 end
