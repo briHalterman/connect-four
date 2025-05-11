@@ -33,9 +33,11 @@ class Game
       @board.print_board
 
       puts "#{current_player[:symbol]} #{current_player[:name]}, Go 4 it!"
-      column = gets.chomp.to_i
+      column = get_valid_column
       take_turn(column)
     end
+
+    @board.print_board
 
     if @winner
       puts "#{current_player[:name]} wins! That's four in a row!"
@@ -49,7 +51,7 @@ class Game
       input = gets.chomp
 
       if input.match?(/^\d+$/) && (1..7).include?(input.to_i)
-        column = input.to_i
+        column = input.to_i - 1
 
         if @board.grid[0][column] != nil
           puts "Column #{column} is full"
