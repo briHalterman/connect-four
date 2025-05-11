@@ -144,4 +144,11 @@ RSpec.describe Game do
       expect(game.send(:play_again?)).to be true
     end
   end
+
+  it "returns false if the player enters 'n'" do
+    game = Game.new
+    allow(game).to receive(:gets).and_return("n")
+
+    expect(game.send(:play_again?)).to be false
+  end
 end

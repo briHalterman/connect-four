@@ -67,8 +67,7 @@ class Game
       puts "Play again? (y/n): "
       input = gets.chomp.downcase
       return true if input == "y"
-      return false if input input == "n"
-      puts "Please enter y or n"
+      return false if input == "n"
     end
   end
 end
