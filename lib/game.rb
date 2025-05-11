@@ -43,4 +43,15 @@ class Game
       puts "This time? Nobody ruled the row!"
     end
   end
+
+  def get_valid_column
+    loop do
+      input = gets.chomp
+      if input.match?(/^\d+$/)
+        return input.to_i
+      else
+        puts "Please choose a number between 1 and 7"
+      end
+    end
+  end
 end

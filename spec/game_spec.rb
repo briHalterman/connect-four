@@ -93,4 +93,15 @@ RSpec.describe Game do
       expect { game.play }.to output(/1 2 3 4 5 6 7/).to_stdout
     end
   end
+
+
+  describe "#get_valid_column" do
+    it "rejects input that isn't a number and asks again" do
+      game = Game.new
+
+      allow(game).to receive(:gets).and_return("not_a_number", "3")
+
+      expect { game.send(:get_valid_column) }.to output(/Please choose a number between 1 and 7/).to_stdout
+    end
+  end
 end
