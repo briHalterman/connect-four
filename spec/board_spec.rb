@@ -15,7 +15,7 @@ RSpec.describe Board do
 
       expected_output =
         "| | | | | | | |\n" * 6 +
-        " 0 1 2 3 4 5 6\n"
+        " 1 2 3 4 5 6 7\n"
 
       expect { board.print_board }.to output(expected_output).to_stdout
     end
@@ -33,7 +33,7 @@ RSpec.describe Board do
         "| | | |🔴| | | |\n" +  # row 3
         "| | | |🟡| | | |\n" +  # row 4
         "| | | |🔴| | | |\n" +  # row 5
-        " 0 1 2 3 4 5 6\n"
+        " 1 2 3 4 5 6 7\n"
 
       expect { board.print_board }.to output(expected_output).to_stdout
     end

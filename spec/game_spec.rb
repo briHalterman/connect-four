@@ -90,7 +90,7 @@ RSpec.describe Game do
 
       allow(game).to receive(:gets).and_return("3")
 
-      expect { game.play }.to output(/0 1 2 3 4 5 6/).to_stdout
+      expect { game.play }.to output(/1 2 3 4 5 6 7/).to_stdout
     end
   end
 end
