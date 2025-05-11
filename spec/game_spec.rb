@@ -123,7 +123,16 @@ RSpec.describe Game do
 
       expect {
         game.send(:get_valid_column)
-    }.to output(/Column 3 is full/).to_stdout
+      }.to output(/Column 3 is full/).to_stdout
+    end
+
+    it "asks again after invalid input until valid input is given" do
+      game = Game.new
+      allow(game).to receive(:gets).and_return("not a number", "10", "4")
+
+      expect {
+        game.send(:get_valid_column)
+      }.to output(/Please choose a number between 1 and 7/).to_stdout
     end
   end
 end
