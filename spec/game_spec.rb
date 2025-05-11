@@ -151,4 +151,13 @@ RSpec.describe Game do
 
     expect(game.send(:play_again?)).to be false
   end
+
+  it "prompts again on invalid input" do
+    game = Game.new
+    allow(game).to receive(:gets).and_return("maybe", "y")
+
+    expect {
+      game.send(:play_again?)
+    }.to output(/Please enter y or n/).to_stdout
+  end
 end
