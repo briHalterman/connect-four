@@ -143,21 +143,21 @@ RSpec.describe Game do
 
       expect(game.send(:play_again?)).to be true
     end
-  end
 
-  it "returns false if the player enters 'n'" do
-    game = Game.new
-    allow(game).to receive(:gets).and_return("n")
+    it "returns false if the player enters 'n'" do
+      game = Game.new
+      allow(game).to receive(:gets).and_return("n")
 
-    expect(game.send(:play_again?)).to be false
-  end
+      expect(game.send(:play_again?)).to be false
+    end
 
-  it "prompts again on invalid input" do
-    game = Game.new
-    allow(game).to receive(:gets).and_return("maybe", "y")
+    it "prompts again on invalid input" do
+      game = Game.new
+      allow(game).to receive(:gets).and_return("maybe", "y")
 
-    expect {
-      game.send(:play_again?)
-    }.to output(/Please enter y or n/).to_stdout
+      expect {
+        game.send(:play_again?)
+      }.to output(/Please enter y or n/).to_stdout
+    end
   end
 end
