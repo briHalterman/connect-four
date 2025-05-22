@@ -54,7 +54,7 @@ class Game
         column = input.to_i - 1
 
         if @board.grid[0][column] != nil
-          puts "Column #{column} is full"
+          puts "Column #{input} is full"
         else
           return column
         end

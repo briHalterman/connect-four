@@ -62,7 +62,7 @@ RSpec.describe Game do
       board.grid[5][1] = "●"
       board.grid[5][2] = "●"
 
-      allow(game).to receive(:gets).and_return("3")
+      allow(game).to receive(:gets).and_return("4", "n")
 
       expect { game.play }.to output(/Player 1 wins! That's four in a row!/).to_stdout
     end
@@ -77,6 +77,8 @@ RSpec.describe Game do
         end
       end
 
+      allow(game).to receive(:gets).and_return("3", "n")
+
       expect { game.play }.to output(/This time\? Nobody ruled the row!/).to_stdout
     end
 
@@ -88,7 +90,7 @@ RSpec.describe Game do
       board.grid[5][1] = "●"
       board.grid[5][2] = "●"
 
-      allow(game).to receive(:gets).and_return("3")
+      allow(game).to receive(:gets).and_return("4", "n")
 
       expect { game.play }.to output(/1 2 3 4 5 6 7/).to_stdout
     end
@@ -117,7 +119,7 @@ RSpec.describe Game do
       game = Game.new
       board = game.instance_variable_get(:@board)
 
-      6.times { board.drop_piece(3, "●")}
+      6.times { board.drop_piece(2, "●")}
 
       allow(game).to receive(:gets).and_return("3", "2")
 
